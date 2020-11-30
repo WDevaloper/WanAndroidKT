@@ -1,2 +1,5 @@
+include ':home'
+include ':provider'
+include ':base_lib'
 include ':app'
 rootProject.name = "WanAndroidKT"
