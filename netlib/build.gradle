@@ -1,6 +1,6 @@
-apply plugin: base_config.library
-apply plugin: base_config.kotlin_android
-apply plugin: base_config.kotlin_android_extensions
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion base_config.compileSdkVersion
@@ -11,7 +11,6 @@ android {
         targetSdkVersion base_config.targetSdkVersion
         versionCode base_config.versionCode
         versionName base_config.versionName
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
@@ -26,18 +25,12 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    testImplementation depends.junit
-    androidTestImplementation depends.androidx_junit
-    androidTestImplementation depends.espresso_core
-    api depends.kotlin_stdlib
-    api depends.core_ktx
-    api depends.appcompat
-    api depends.constraintlayout
-    api depends.recyclerview
-    api depends.cardview
-    api depends.material
-    api depends.kotlinx_coroutines_core
-    api depends.kotlinx_coroutines_android
-    api depends.lifecycle_viewmodel_ktx
-    api depends.lifecycle_livedata_ktx
+    testImplementation 'junit:junit:4.13'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    implementation depends.retrofit
+    implementation depends.converter_scalars
+    implementation depends.retrofit_converter_gson
+    implementation depends.gson
+    implementation depends.okhttp
+    implementation depends.okhttp_logging_interceptor
 }

@@ -1,17 +1,17 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+apply plugin: base_config.application
+apply plugin: base_config.kotlin_android
+apply plugin: base_config.kotlin_android_extensions
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.1"
+    compileSdkVersion base_config.compileSdkVersion
+    buildToolsVersion base_config.buildToolsVersion
 
     defaultConfig {
         applicationId "com.github.wan.android"
-        minSdkVersion 21
-        targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion base_config.minSdkVersion
+        targetSdkVersion base_config.targetSdkVersion
+        versionCode base_config.versionCode
+        versionName base_config.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -26,12 +26,13 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:${depends.kotlin_version}"
-    implementation 'androidx.core:core-ktx:1.3.2'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    testImplementation depends.junit
+    androidTestImplementation depends.androidx_junit
+    androidTestImplementation depends.espresso_core
+    implementation depends.kotlin_stdlib
+    implementation depends.core_ktx
+    implementation depends.appcompat
+    implementation depends.constraintlayout
 
+    if (isApp) implementation project(path: ':home')
 }
